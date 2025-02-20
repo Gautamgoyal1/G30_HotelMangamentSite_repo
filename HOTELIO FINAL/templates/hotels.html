@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Available Properties | HOTELIO
+{% endblock title %}
+
+{% block main %}
+<link rel="stylesheet" href="../static/hotels.css">
+
+{% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for message in messages %}
+            <div class="alert alert-info" role="alert">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+<div id="properties-container">
+    {% for property in properties %}
+        <div class="property-box">
+            <img src="{{ url_for('static', filename='images/' + property.image_filename) }}" alt="Property Image" class="property-image">
+            <div class="property-details">
+                <h3>{{ property.name }}</h3>
+                <p><strong>Description:</strong> {{ property.description }}</p>
+                <p><strong>Location:</strong> {{ property.location }}</p>
+                <p><strong>Price:</strong> ₹{{ property.price }}</p>
+                <p><strong>Rooms Available:</strong> {{ property.rooms_available }}</p>
+                <p><strong>License No.:</strong> {{ property.license_number }}</p>
+            </div>
+            {% if current_user.is_authenticated %}
+  <button class="book-now-btn" onclick="window.location.href='{{ url_for('book_property', property_id=property.id) }}';">Book Now</button>
+{% else %}
+  <button class="book-now-btn" onclick="window.location.href='{{ url_for('userlogin') }}';">Login to Book</button>
+{% endif %}
+
+
+
+
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock main %}

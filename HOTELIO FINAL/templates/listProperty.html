@@ -1,0 +1,69 @@
+{% extends 'base.html' %} 
+{% block title %} HOTELIO | A HOTEL MANAGEMENT WEBSITE
+{% endblock title %}
+
+{% block main %}
+<link rel="stylesheet" href="../static/listProperty.css">
+
+{% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for message in messages %}
+            <div class="alert alert-info" role="alert">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+
+<div id="main">
+<section class="list-property-form">
+  <h2>List Your Property</h2>
+  <form action="#" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="property-name">Hotel Name:</label>
+      <input type="text" id="property-name" name="property-name" required>
+    </div>
+    
+    
+    <div class="form-group">
+      <label for="property-location">Location (City):</label>
+      <input type="text" id="property-location" name="property-location" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="property-image">Upload Property Image:</label>
+      <input type="file" id="property-image" name="property-image" accept="image/*" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="license-number">License Number:</label>
+      <input type="text" id="license-number" name="license-number" required>
+    </div>
+    
+    <!-- New Price Field -->
+    <div class="form-group">
+      <label for="rooms-available">Number of Rooms Available:</label>
+      <input type="number" id="rooms-available" name="rooms-available" min="1" required>
+    </div>
+    <div class="form-group">
+      <label for="price">Price for single room:</label>
+      <input type="number" id="price" name="price" min="1" step="any" required>
+    </div>
+    
+    <!-- New Number of Rooms Field -->
+    <div class="form-group">
+      <label for="property-description">Property Description:</label>
+      <textarea id="property-description" name="property-description" rows="4" required></textarea>
+    </div>
+    
+    <div class="form-group">
+      <button type="submit">Submit Property</button>
+    </div>
+  </form>
+</section>
+</div>
+
+{% endblock main %}

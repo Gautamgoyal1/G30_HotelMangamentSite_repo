@@ -1,0 +1,115 @@
+/* General styling for the booking page */
+.book-property-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+.book-property-container h2 {
+    font-size: 2rem;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Property details section */
+.property-details {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.property-details p {
+    font-size: 1rem;
+    color: #555;
+    margin: 10px 0;
+}
+
+.property-details strong {
+    color: #222;
+}
+
+/* Input fields */
+input[type="text"], 
+input[type="email"], 
+input[type="number"], 
+input[type="date"], 
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+/* Focus effect for inputs */
+input:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Dropdown styling */
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+}
+
+/* Submit button */
+button.book-now-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+button.book-now-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Flexbox for form layout */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .book-property-container {
+        padding: 15px;
+    }
+
+    .book-property-container h2 {
+        font-size: 1.5rem;
+    }
+
+    button.book-now-btn {
+        font-size: 1rem;
+        padding: 12px;
+    }
+
+    input, select {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+}

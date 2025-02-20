@@ -1,0 +1,118 @@
+/* Color Theme */
+:root {
+  --primary-light: #E8F5E9;
+  --primary-main: #81C784;
+  --primary-dark: #2E7D32;
+  --text-primary: #1B5E20;
+  --text-secondary: #4CAF50;
+}
+
+/* Updated Global Styles */
+body {
+  background-color: #F0F7F0; /* Light green background */
+  color: var(--text-primary);
+}
+
+/* Contact Section */
+.contact {
+  padding: 100px 5% 40px;
+}
+
+.content h2 {
+  color: var(--primary-dark);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.content p.subheading {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+/* Container */
+.container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  padding: 2.5rem;
+}
+
+/* Contact Info */
+.contactInfo .box {
+  background: var(--primary-light);
+  border-left: 4px solid var(--primary-main);
+}
+
+.contactInfo .box .icon {
+  background: var(--primary-dark);
+}
+
+.contactInfo .box .text h3 {
+  color: var(--primary-dark);
+}
+
+/* Contact Form */
+.contactForm {
+  background: #F8FBF8; /* Very light green */
+  border: 1px solid var(--primary-light);
+}
+
+.contactForm form h2 {
+  color: var(--primary-dark);
+  margin-bottom: 2rem;
+}
+
+.contactForm .inputBox span {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.contactForm .inputBox input,
+.contactForm .inputBox textarea {
+  border: 2px solid #DFEDE0;
+  transition: all 0.3s ease;
+}
+
+.contactForm .inputBox input:focus,
+.contactForm .inputBox textarea:focus {
+  border-color: var(--primary-main);
+  box-shadow: 0 0 8px rgba(129,199,132,0.2);
+}
+
+/* Buttons */
+input[type="submit"] {
+  background: var(--primary-dark) !important;
+  padding: 12px 30px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease !important;
+}
+
+input[type="submit"]:hover {
+  background: #1B5E20 !important;
+  transform: translateY(-2px);
+}
+
+/* Social Links */
+.links a {
+  color: var(--primary-dark);
+  transition: all 0.3s ease;
+}
+
+.links a:hover {
+  color: #1B5E20;
+  transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+      padding: 1.5rem;
+  }
+  
+  .contactForm {
+      padding: 2rem;
+  }
+}

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<style>
+    .booking-card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        margin: 20px 0;
+        transition: transform 0.3s;
+    }
+
+    .booking-card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .booking-card h2 {
+        color: #333;
+    }
+
+    .booking-card p {
+        color: #555;
+    }
+
+    .button-container {
+        margin-top: 20px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-right: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .btn-cancel {
+        background-color: #e74c3c;
+        color: white;
+    }
+
+    .btn-pay {
+        background-color: #2ecc71;
+        color: white;
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+    }
+</style>
+
+<h1>Your Bookings</h1>
+
+{% if bookings %}
+    <ul class="booking-list">
+        {% for booking in bookings %}
+            <li class="booking-card">
+                <h2>{{ booking.property.name }}</h2>
+                <p><strong>Booked by:</strong> {{ booking.user_name }}</p>
+                <p><strong>Email:</strong> {{ booking.user_email }}</p>
+                <p><strong>Phone:</strong> {{ booking.user_phone }}</p>
+                <p><strong>Booking Date:</strong> {{ booking.booking_date.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+                <p><strong>Check-in Date:</strong> {{ booking.checkin_date.strftime('%Y-%m-%d') }}</p>
+                <p><strong>Check-out Date:</strong> {{ booking.checkout_date.strftime('%Y-%m-%d') }}</p>
+                <p><strong>Location:</strong> {{ booking.property.location }}</p>
+                <p><strong>Rooms:</strong> {{ booking.rooms }}</p>
+
+                <!-- Button Section -->
+                <div class="button-container">
+                    <!-- Cancel Booking Button -->
+                    <form action="{{ url_for('delete_booking', id=booking.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-cancel" onclick="return confirm('Are you sure you want to cancel this booking?');">
+                            Cancel Booking
+                        </button>
+                    </form>
+                    
+
+                    <!-- Continue to Payment Button -->
+                    <a href="#" class="btn btn-pay">Continue to Payment</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No bookings found.</p>
+{% endif %}
+
+{% endblock %}

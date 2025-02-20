@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Login | HOTELIO
+{% endblock title %}
+
+{% block main %}
+<link rel="stylesheet" href="{{url_for('static', filename='userlogin.css')}}">
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul>
+            {% for category, message in messages %}
+                <li class="alert alert-{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+<div class="login-box">
+    <div class="login-header">
+        <header>Login</header>
+    </div>
+    <!-- Form element to trigger submission -->
+    <form method="POST" action="{{ url_for('userlogin') }}">
+        <div class="input-box">
+            <input type="text" class="input-field" name="email" placeholder="Email" autocomplete="off" required>
+        </div>
+        <div class="input-box">
+            <input type="password" class="input-field" name="password" placeholder="Password" autocomplete="off" required>
+        </div>
+        <div class="forgot">
+            <section>
+                <input type="checkbox" id="check">
+                <label for="check">Remember me</label>
+            </section>
+            <section>
+                <a href="{{url_for('forgot')}}">Forgot password</a>
+            </section>
+        </div>
+        <!-- <div class="mb-3"> -->
+            <!-- Login button inside the form -->
+            <input type="submit" class="btn btn-primary" value="Login" />
+        <!-- </div> -->
+    </form>
+    
+    <div class="sign-up-link">
+        <p>Don't have an account? <a href="{{ url_for('usersignup') }}">Sign Up</a></p>
+    </div>
+</div>
+
+<script src="../static/JS/login.js"></script>
+{% endblock main %}
+
+{% block nav2 %}
+    
+{% endblock nav2 %}
+
+{% block footer %}
+    
+{% endblock footer %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Book Property | HOTELIO
+{% endblock title %}
+
+{% block main %}
+<link rel="stylesheet" href="../static/book_property.css">
+
+{% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for message in messages %}
+            <div class="alert alert-info" role="alert">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+
+<div class="book-property-container">
+    <h2>Book Hotel: {{ property.name }}</h2>
+    <div class="property-details">
+        <p><strong>Description:</strong> {{ property.description }}</p>
+        <p><strong>Location:</strong> {{ property.location }}</p>
+        <p><strong>Price:</strong> ₹{{ property.price }}</p>
+        <p><strong>Rooms Available:</strong> {{ property.rooms_available }}</p>
+        <p><strong>License No.:</strong> {{ property.license_number }}</p>
+    </div>
+
+    <form action="{{ url_for('book_property', property_id=property.id) }}" method="POST">
+      <label for="user-name">Your Name:</label>
+      <input type="text" id="user-name" name="user-name" required>
+  
+      <label for="user-phone">Phone Number:</label>
+      <input type="text" id="user-phone" name="user-phone" required>
+  
+      <label for="user-email">Email Address:</label>
+      <input type="email" id="user-email" name="user-email" required>
+  
+
+      <label for="checkin-date">Check-in Date:</label>
+      <input type="date" id="checkin-date" name="checkin-date" required>
+  
+
+      <label for="checkout-date">Check-out Date:</label>
+      <input type="date" id="checkout-date" name="checkout-date" required>
+  
+      <!-- Select Number of Rooms -->
+      <label for="rooms">Number of Rooms:</label>
+      <select id="rooms" name="rooms" required>
+          {% for i in range(1, property.rooms_available + 1) %}
+              <option value="{{ i }}">{{ i }}</option>
+          {% endfor %}
+      </select>
+  
+      <button type="submit" class="book-now-btn">Confirm Booking</button>
+  </form>
+  
+</div>
+{% endblock main %}

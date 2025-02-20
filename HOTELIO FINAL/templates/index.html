@@ -1,0 +1,252 @@
+{% extends 'base.html' %} {% block title %} HOTELIO | A HOTEL MANAGEMENT WEBSITE
+{% endblock title %}
+
+
+{% block main %}
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="{{url_for('static',filename='index.css')}}" />
+
+{% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for message in messages %}
+            <div class="alert alert-info" role="alert">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+<div class="container">
+  <div class="typing">Find your next stay</div>
+  <div class="subtitle">
+    Search low prices on hotels, homes and much more...
+  </div>
+</div>
+
+<form action="{{url_for('search_properties')}}" class="search-form" method="GET">
+  <div class="form-group">
+    <label for="place">Where are you going?</label>
+    <input name="location_to_search"
+      type="text"
+      id="place"
+      
+      placeholder="Enter destination"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="checkin">Check-in date</label>
+    <input type="date" id="checkin" name="checkin" />
+  </div>
+
+  <div class="form-group">
+    <label for="checkout">Check-out date</label>
+    <input type="date" id="checkout" name="checkout" />
+  </div>
+
+  <button type="submit" class="search-button">Search</button>
+</form>
+
+<div
+  id="carouselExampleAutoplaying"
+  class="carousel slide"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img
+        src="https://assets.oyoroomscdn.com/cmsMedia/ce354285-aeae-46f6-815c-e5914b5ed0bf.jpg"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="https://assets.oyoroomscdn.com/cmsMedia/33e8565d-f803-49ab-9269-a4bc97cd835d.jpg"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="https://assets.oyoroomscdn.com/cmsMedia/33e8565d-f803-49ab-9269-a4bc97cd835d.jpg"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleAutoplaying"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleAutoplaying"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<div class="treanding">
+  <h1>Trending Destinations</h1>
+  <p>Most popular choices for travellers from India</p>
+
+  <div class="grid">
+      <!-- New Delhi -->
+      <a href="/search?location_to_search=new delhi&checkin=&checkout=" class="destination">
+          <img src="../static/images/humayuns-tomb.jpg" alt="New Delhi"
+          onerror="this.src='fallback.jpg'">
+          <h2>New Delhi</h2>
+      </a>
+
+      <!-- Bangalore -->
+      <a href="/search?location_to_search=banglore&checkin=&checkout=" class="destination">
+          <img src="https://storage.googleapis.com/a1aa/image/9q_AA2xCyx5o6uH3lyF_jbVAbUyH5juyL05ZftBgw5E.jpg" alt="Bangalore"
+          onerror="this.src='fallback.jpg'">
+          <h2>Bangalore</h2>
+      </a>
+
+      <!-- Pune -->
+      <a href="/search?location_to_search=pune&checkin=&checkout=" class="destination">
+          <img src="../static/images/pune.jpg" alt="Pune"
+          onerror="this.src='fallback.jpg'">
+          <h2>Pune</h2>
+      </a>
+
+      <!-- Chennai -->
+      <a href="/search?location_to_search=chennai&checkin=&checkout=" class="destination">
+          <img src="https://storage.googleapis.com/a1aa/image/Efj-_bzPvqw2Iz5GEqWCRcvBvkgq5TLNB75i5sKGQdI.jpg" alt="Chennai"
+          onerror="this.src='fallback.jpg'">
+          <h2>Chennai</h2>
+      </a>
+
+      <!-- Hyderabad -->
+      <a href="/search?location_to_search=hyderabad&checkin=&checkout=" class="destination">
+          <img src="../static/images/hyderabad.jpg" alt="Hyderabad"
+          onerror="this.src='fallback.jpg'">
+          <h2>Hyderabad</h2>
+      </a>
+
+      <!-- Mumbai (Gateway of India) -->
+      <a href="/search?location_to_search=mumbai&checkin=&checkout=" class="destination">
+          <img src="https://storage.googleapis.com/a1aa/image/kTLHsH_ePKNe3QnCfEiM9wVZF_FAgc0ciY_8wuWeNgA.jpg" alt="Mumbai"
+          onerror="this.src='fallback.jpg'">
+          <h2>Mumbai</h2>
+      </a>
+  </div>
+</div>
+
+
+
+<div class="rooms-wrapper">
+  <h3 style="margin: 10px;">Trending Deals of the Week</h3>
+  <button class="scroll-button scroll-left" onclick="scrollLeft()">&#10094;</button>
+  
+  <div class="rooms-container" id="rooms">
+    <div class="room-card">
+      <img src="../static/images/IMG-20250213-WA0012.jpg" alt="Treebo Corporate Park">
+      <h3>Treebo Corporate Park</h3>
+      <p>New Delhi, India</p>
+      <p>₹ 8,594 for 2 nights</p>
+      {% if current_user.is_authenticated %}
+        <a href="{{ url_for('properties') }}" class="add-to-cart">Book Now</a>
+      {% else %}
+        <a href="{{ url_for('userlogin') }}" class="add-to-cart">Login to Book</a>
+      {% endif %}
+    </div>
+    
+    <div class="room-card">
+      <img src="../static/images/IMG-20250213-WA0007.jpg" alt="Quality Inn Elite">
+      <h3>Quality Inn Elite, Amritsar</h3>
+      <p>Amritsar, India</p>
+      <p>₹ 5,670 for 2 nights</p>
+      {% if current_user.is_authenticated %}
+        <a href="{{ url_for('properties') }}" class="add-to-cart">Book Now</a>
+      {% else %}
+        <a href="{{ url_for('userlogin') }}" class="add-to-cart">Login to Book</a>
+      {% endif %}
+    </div>
+
+    <div class="room-card">
+      <img src="../static/images/images.jpg" alt="Aachman Valley Resort">
+      <h3>Aachman Valley Resort Shimla</h3>
+      <p>Shimla, India</p>
+      <p>₹ 2,608 for 2 nights</p>
+      {% if current_user.is_authenticated %}
+        <a href="{{ url_for('properties') }}" class="add-to-cart">Book Now</a>
+      {% else %}
+        <a href="{{ url_for('userlogin') }}" class="add-to-cart">Login to Book</a>
+      {% endif %}
+    </div>
+
+    <div class="room-card">
+      <img src="../static/images/IMG-20250213-WA0009.jpg" alt="Hotel Airport Residency">
+      <h3>Hotel Airport Residency</h3>
+      <p>New Delhi, India</p>
+      <p>₹ 7,260 for 2 nights</p>
+      {% if current_user.is_authenticated %}
+        <a href="{{ url_for('properties') }}" class="add-to-cart">Book Now</a>
+      {% else %}
+        <a href="{{ url_for('userlogin') }}" class="add-to-cart">Login to Book</a>
+      {% endif %}
+    </div>
+
+    <div class="room-card">
+      <img src="../static/images//IMG-20250213-WA0011.jpg" alt="Hotel Airport Residency">
+      <h3>Hotel Airport Residency</h3>
+      <p>New Delhi, India</p>
+      <p>₹ 7,260 for 2 nights</p>
+      {% if current_user.is_authenticated %}
+        <a href="{{ url_for('properties') }}" class="add-to-cart">Book Now</a>
+      {% else %}
+        <a href="{{ url_for('userlogin') }}" class="add-to-cart">Login to Book</a>
+      {% endif %}
+    </div>
+
+    <div class="room-card">
+      <img src="../static/images/IMG-20250213-WA0008.jpg" alt="Hotel Airport Residency">
+      <h3>Hotel Airport Residency</h3>
+      <p>New Delhi, India</p>
+      <p>₹ 7,260 for 2 nights</p>
+      {% if current_user.is_authenticated %}
+        <a href="{{ url_for('properties') }}" class="add-to-cart">Book Now</a>
+      {% else %}
+        <a href="{{ url_for('userlogin') }}" class="add-to-cart">Login to Book</a>
+      {% endif %}
+    </div>
+ 
+
+
+  
+  <button class="scroll-button scroll-right" onclick="scrollRight()">&#10095;</button>
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../static/JS/index.js"></script>
+
+{% endblock main %}
